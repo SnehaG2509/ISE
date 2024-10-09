@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timetable Generator</title>
+
+   <!--  <link rel="stylesheet" href="styles.css"> -->
+   <style type="text/css">
+       body {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+main {
+    margin: 20px;
+    text-align: center;
+}
+
+#timetable {
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #333;
+}
+
+th, td {
+    padding: 10px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+   </style>
+</head>
+<body>
+    <header>
+        <h1>Timetable Generator</h1>
+    </header>
+    <main>
+        <div id="timetable"></div>
+        <button id="generateButton">Generate Timetable</button>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
+<script type="text/javascript">
+    document.getElementById('generateButton').addEventListener('click', generateTimetable);
+
+function generateTimetable() {
+    var timetable = document.getElementById('timetable');
+    timetable.innerHTML = ''; // Clear previous timetable
+
+    var days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+    var periods = ['1st Period', '2nd Period', '3rd Period', '4th Period', '5th Period'];
+    var subjects = ['Math', 'Science', 'History', 'English', 'Art'];
+
+    var table = document.createElement('table');
+    var tr = document.createElement('tr');
+
+    // Create table header
+    var th = document.createElement('th');
+    th.textContent = '';
+    tr.appendChild(th);
+    for (var i = 0; i < days.length; i++) {
+        th = document.createElement('th');
+        th.textContent = days[i];
+        tr.appendChild(th);
+    }
+    table.appendChild(tr);
+
+    // Create table body
+    for (var j = 0; j < periods.length; j++) {
+        tr = document.createElement('tr');
+        var td = document.createElement('td');
+        td.textContent = periods[j];
+        tr.appendChild(td);
+        for (var k = 0; k < days.length; k++) {
+            td = document.createElement('td');
+            td.textContent = subjects[Math.floor(Math.random() * subjects.length)];
+            tr.appendChild(td);
+        }
+        table.appendChild(tr);
+    }
+
+    timetable.appendChild(table);
+}
+
+</script>
